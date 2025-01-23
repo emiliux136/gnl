@@ -6,13 +6,13 @@
 /*   By: emilgarc <emilgarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:02:24 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/01/17 16:19:22 by emilgarc         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:42:02 by emilgarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*printline(char *line)
+char	*allocrest(char *line)
 {
 	int		i;
 	char	*rem;
@@ -24,7 +24,10 @@ char	*printline(char *line)
 		return (NULL);
 	rem = ft_substr(line, i + 1, ft_strlen(line) - i);
 	if (*rem == 0)
+	{
+		free(rem);
 		rem = NULL;
+	}
 	line[i + 1] = 0;
 	return (rem);
 }
@@ -78,6 +81,6 @@ char	*get_next_line(int fd)
 	free(buffer);
 	if (!line)
 		return (NULL);
-	rem = printline(line);
+	rem = allocrest(line);
 	return (line);
 }

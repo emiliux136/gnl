@@ -6,7 +6,7 @@
 /*   By: emilgarc <emilgarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:02:27 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/01/17 15:50:23 by emilgarc         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:03:54 by emilgarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strdup(char *src);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
-char	*printline(char *line);
+char	*allocrest(char *line);
 char	*readline(int fd, char *buffer, char *rem);
 
 #endif
