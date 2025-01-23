@@ -6,7 +6,7 @@
 /*   By: emilgarc <emilgarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:02:24 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/01/23 12:42:02 by emilgarc         ###   ########.fr       */
+/*   Updated: 2025/01/23 12:45:45 by emilgarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*allocrest(char *line)
 	if (line[i] == 0 || line[i + 1] == 0)
 		return (NULL);
 	rem = ft_substr(line, i + 1, ft_strlen(line) - i);
-	if (*rem == 0)
+	if (*rem == 0 && rem)
 	{
 		free(rem);
 		rem = NULL;
