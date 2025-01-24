@@ -6,7 +6,7 @@
 /*   By: emilgarc <emilgarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:02:21 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/01/23 15:11:07 by emilgarc         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:17:45 by emilgarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,25 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int		i;
-	int		len1;
-	int		len2;
-	char	*str;
+	size_t	len1;
+	size_t	len2;
+	char	*result;
+	size_t	i;
 
-	if (s1 && s2)
-	{
-		len1 = ft_strlen(s1);
-		len2 = ft_strlen(s2);
-		str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-		if (str == NULL)
-			return (NULL);
-		i = -1;
-		while (s1[++i])
-			str[i] = s1[i];
-		i = -1;
-		while (s2[++i])
-		{
-			str[len1] = s2[i];
-			len1++;
-		}
-		str[len1] = '\0';
-		return (str);
-	}
-	return (NULL);
+	if (!s1 || !s2)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	result = (char *)malloc(len1 + len2 + 1);
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (*s1)
+		result[i++] = *s1++;
+	while (*s2)
+		result[i++] = *s2++;
+	result[i] = '\0';
+	return (result);
 }
 
 size_t	ft_strlen(const char *s)

@@ -6,7 +6,7 @@
 /*   By: emilgarc <emilgarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:02:24 by emilgarc          #+#    #+#             */
-/*   Updated: 2025/01/23 12:45:45 by emilgarc         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:21:06 by emilgarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 char	*allocrest(char *line)
 {
-	int		i;
-	char	*rem;
+	ssize_t		i;
+	char		*rest;
 
 	i = 0;
+	
 	while (line[i] != '\n' && line[i] != '\0')
 		i++;
 	if (line[i] == 0 || line[i + 1] == 0)
 		return (NULL);
-	rem = ft_substr(line, i + 1, ft_strlen(line) - i);
-	if (*rem == 0 && rem)
+	rest = ft_substr(line, i + 1, ft_strlen(line) - i);
+	if (*rest == 0)
 	{
-		free(rem);
-		rem = NULL;
+		free(rest);
+		rest = NULL;
 	}
 	line[i + 1] = 0;
-	return (rem);
+	return (rest);
 }
 
 char	*readline(int fd, char *buffer, char *rem)
 {
-	int			bytes_read;
+	ssize_t		bytes_read;
 	char		*temp;
 
 	bytes_read = 1;
@@ -68,8 +69,9 @@ char	*get_next_line(int fd)
 	static char	*rem;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
+		free(rem);
 		free(buffer);
 		rem = NULL;
 		buffer = NULL;
